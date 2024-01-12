@@ -72,6 +72,7 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: SIZES.xLarge + 6,
     textAlign: "center",
+    fontFamily:FONTS.bold
   },
   subText: {
     marginTop: SIZES.large,

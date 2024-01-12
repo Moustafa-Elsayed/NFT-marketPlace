@@ -1,26 +1,32 @@
-import React from "react";
-import { StatusBar } from "expo-status-bar";
-import {
-  useFonts,
-  Roboto_400Regular,
-  Roboto_700Bold,
-} from "@expo-google-fonts/roboto";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Welcome from "./screens/Welcome";
-import Home from "./screens/Home";
-import NFTDetails from "./screens/NftDetails";
+import React, { useEffect, useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { Text } from 'react-native';
+import * as Font from 'expo-font';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Welcome from './screens/Welcome';
+import Home from './screens/Home';
+import NFTDetails from './screens/NftDetails';
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const [fontsLoaded] = useFonts({
-    "Roboto-Regular": Roboto_400Regular,
-    "Roboto-Bold": Roboto_700Bold,
-  });
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  // Load fonts using the Font.loadAsync method
+  useEffect(() => {
+    async function loadFonts() {
+      await Font.loadAsync({
+        'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
+      });
+      setFontsLoaded(true);
+    }
+
+    loadFonts();
+  }, []);
 
   if (!fontsLoaded) {
-    return null; // or loading indicator
+    return null; // Render nothing while the fonts are loading
   }
 
   return (
@@ -38,6 +44,10 @@ const App = () => {
           <Stack.Screen name="NFT-details" component={NFTDetails} />
         </Stack.Navigator>
       </NavigationContainer>
+      {/* Example usage of the loaded font in a Text component */}
+      <Text style={{ fontSize: 30, fontFamily: 'Inter-Bold' }}>
+        Inter Bold
+      </Text>
     </>
   );
 };
