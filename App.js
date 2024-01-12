@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet,} from "react-native";
 import { useFonts } from "expo-font";
 // react-nativeNavigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -10,14 +10,15 @@ import Home from "./screens/Home.jsx";
 import NftDetails from "./screens/NftDetails.jsx";
 
 export default function App() {
-  const { fontLoad } = useFonts({
+   const [fontLoaded] = useFonts({
     InterBold: require("./assets/fonts/Inter-Bold.ttf"),
     InterLight: require("./assets/fonts/Inter-Light.ttf"),
     InterMedium: require("./assets/fonts/Inter-Medium.ttf"),
     InterRegular: require("./assets/fonts/Inter-Regular.ttf"),
-    InterSemiBod: require("./assets/fonts/Inter-SemiBold.ttf"),
+    InterSemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
   });
-  // if (!fontLoad) return null;
+  if (!fontLoaded) return null;
+
   const Stack = createNativeStackNavigator();
 
   return (
