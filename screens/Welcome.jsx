@@ -4,9 +4,13 @@ import { COLORS, SIZES, FONTS } from "../constants";
 import nft08 from "../assets/images/nft08.jpg";
 import nft06 from "../assets/images/nft06.jpg";
 import nft04 from "../assets/images/nft04.jpg";
-import { Colors } from "react-native/Libraries/NewAppScreen";
-
-const Welocome = () => {
+import Button from "../compomnents/Button";
+import { useNavigation } from "@react-navigation/native";
+const Welcome = () => {
+  const navigation=useNavigation();
+  pressHandler=()=>{
+    navigation.navigate("Home")
+  }
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -20,12 +24,19 @@ const Welocome = () => {
           <Image style={styles.image} source={nft04} />
         </View>
       </View>
-      <Text style={styles.textConatiner}>
+      <View style={styles.textConatiner}>
         <Text style={styles.mainText}>Find, Collect and sell Amazing NFTs</Text>
         <Text style={styles.subText}>
           Explore the top collection of NFTs and buy ans sells your NFTs aw well{" "}
         </Text>
-      </Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button title="Get Started"
+          pressHandler={pressHandler}
+          stylesButton={styles.button}
+          styleText={styles.textButton}
+        />
+      </View>
     </View>
   );
 };
@@ -58,15 +69,29 @@ const styles = StyleSheet.create({
   },
   mainText: {
     color: COLORS.white,
-    textAlign: "center",
-    fontFamily: FONTS.bold,
     fontSize: SIZES.xLarge + 6,
+    textAlign: "center",
   },
   subText: {
-   fontFamily:FONTS.light,
-   textAlign:"center",
-   marginTop:SIZES.large,
-   color:COLORS.gray,
+    marginTop: SIZES.large,
+    color: COLORS.gray,
+    textAlign: "center",
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: SIZES.xLarge + 10,
+    marginVertical: SIZES.xLarge,
+  },
+  button: {
+    backgroundColor: COLORS.second,
+    padding:SIZES.small + 4,
+    width:240,
+    alignItems:"center",
+    borderRadius:SIZES.medium
+  },
+  textButton:{
+fontSize:SIZES.large,
+color:COLORS.white,
   },
 });
-export default Welocome;
+export default Welcome;
