@@ -7,10 +7,10 @@ import nft04 from "../assets/images/nft04.jpg";
 import Button from "../compomnents/Button";
 import { useNavigation } from "@react-navigation/native";
 const Welcome = () => {
-  const navigation=useNavigation();
-  pressHandler=()=>{
-    navigation.navigate("Home")
-  }
+  const navigation = useNavigation();
+  pressHandler = () => {
+    navigation.navigate("Home");
+  };
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -31,7 +31,8 @@ const Welcome = () => {
         </Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Get Started"
+        <Button
+          title="Get Started"
           pressHandler={pressHandler}
           stylesButton={styles.button}
           styleText={styles.textButton}
@@ -84,14 +85,14 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: COLORS.second,
-    padding:SIZES.small + 4,
-    width:240,
-    alignItems:"center",
-    borderRadius:SIZES.medium
+    padding: SIZES.small + 4,
+    width: 240,
+    alignItems: "center",
+    borderRadius: SIZES.medium,
   },
-  textButton:{
-fontSize:SIZES.large,
-color:COLORS.white,
+  textButton: {
+    fontSize: SIZES.large,
+    color: COLORS.white,
   },
 });
 export default Welcome;
