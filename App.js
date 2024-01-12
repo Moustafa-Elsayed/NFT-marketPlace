@@ -22,9 +22,11 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="welcome">
+        <Stack.Navigator initialRouteName="welcome" screenOptions={{
+          headerShown:false
+        }}>
           <Stack.Screen name="welcome" component={Welocome} />
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Nft-details" component={NftDetails} />
