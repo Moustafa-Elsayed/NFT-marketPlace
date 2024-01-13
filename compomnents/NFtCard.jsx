@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import NftImage from "../compomnents/NftImage";
+import NftAvatar from "./NftAvatar";
 const NFtCard = ({ nftsData }) => {
   return (
     <TouchableWithoutFeedback>
@@ -16,9 +17,13 @@ const NFtCard = ({ nftsData }) => {
         <TouchableOpacity onPress={pressHandler}>
           <NftImage image={nftsData.image} imageStyles={styles.imageStyles} />
         </TouchableOpacity>
-        <View style={styles.cardTop}></View>
+        <View style={styles.cardTop}>
+          <NftAvatar avatars={nftsData.avatars}  />
+        </View>
         <View style={styles.cardBottom}>
-          <View style={{ marginTop: SIZES.small + 5 }}></View>
+          <View style={{ marginTop: SIZES.small + 5 }}>
+            <Text style={{color:COLORS.white}}>hdfjh</Text>
+          </View>
         </View>
       </SafeAreaView>
     </TouchableWithoutFeedback>

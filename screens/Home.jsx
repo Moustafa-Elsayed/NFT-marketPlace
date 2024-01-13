@@ -7,7 +7,6 @@ const Home = () => {
   const [nftsData, setNftsData] = useState(DATA);
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Home</Text>
       <View>
         <FlatList
           data={nftsData}
@@ -24,6 +23,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: COLORS.bg,
+    paddingTop:50
   },
   text: {
     color: COLORS.white,
