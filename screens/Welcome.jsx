@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Animated,BackHandler,Alert } from "react-native";
+import { View, Text, StyleSheet, Image, Animated,BackHandler,Alert, SafeAreaView } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import nft08 from "../assets/images/nft08.jpg";
@@ -20,6 +20,7 @@ const Welcome = () => {
   ).current;
   const fadeTextAnimation = useRef(new Animated.Value(0)).current;
   const moveButtonAnimation = useRef(new Animated.Value(1)).current;
+  const fadebtnAnimation = useRef(new Animated.Value(0)).current;
 
   /** Animations Handlers */
   const imagesAnimationHandler = () => {
@@ -52,11 +53,21 @@ const Welcome = () => {
       useNativeDriver: true,
     }).start();
   };
+  const btnAnimationHandler = () => {
+    Animated.timing(fadebtnAnimation, {
+      toValue: 1,
+      duration,
+      delay,
+      useNativeDriver: true,
+    }).start();
+  };
   useEffect(() => {
+    btnAnimationHandler();
     imagesAnimationHandler();
     textAnimationHandler();
     buttonAnimationHandler();
-  }, [imagesAnimationHandler, textAnimationHandler, buttonAnimationHandler]);
+    
+  }, [btnAnimationHandler,imagesAnimationHandler, textAnimationHandler, buttonAnimationHandler]);
 // BackHandler 
 useEffect(() => {
   const backAction = () => {
@@ -88,7 +99,7 @@ useEffect(() => {
   return () => backHandler.remove();
 }, []);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Animated.View
         style={[
           styles.imageContainer,
@@ -143,7 +154,7 @@ useEffect(() => {
           styleText={styles.textButton}
         />
       </Animated.View>
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

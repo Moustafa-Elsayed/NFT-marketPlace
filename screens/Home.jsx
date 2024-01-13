@@ -1,12 +1,21 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
+import React, { useState } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
-
+import { DATA } from "../constants";
+import NFtCard from "../compomnents/NFtCard";
 const Home = () => {
+  const [nftsData, setNftsData] = useState(DATA);
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Home</Text>
-    </View>
+      <View>
+        <FlatList
+          data={nftsData}
+          renderItem={({ item }) => <NFtCard nftsData={item} />}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({
@@ -19,6 +28,7 @@ const styles = StyleSheet.create({
   text: {
     color: COLORS.white,
     fontSize: SIZES.xLarge + 9,
+    paddingTop: SIZES.xLarge + 100,
   },
 });
 export default Home;
