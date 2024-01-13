@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, Animated } from "react-native";
+import { View, Text, StyleSheet, Image, Animated,BackHandler,Alert } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import nft08 from "../assets/images/nft08.jpg";
@@ -57,7 +57,36 @@ const Welcome = () => {
     textAnimationHandler();
     buttonAnimationHandler();
   }, [imagesAnimationHandler, textAnimationHandler, buttonAnimationHandler]);
+// BackHandler 
+useEffect(() => {
+  const backAction = () => {
+    Alert.alert(
+      'Hold on!',
+      'Are you sure you want to go back?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {
+          text: 'YES',
+          onPress: () => BackHandler.exitApp(),
+          style: 'destructive', // You can customize this style
+        },
+      ],
 
+    );
+    return true;
+  };
+
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    backAction,
+  );
+
+  return () => backHandler.remove();
+}, []);
   return (
     <View style={styles.container}>
       <Animated.View
@@ -79,23 +108,34 @@ const Welcome = () => {
           <Image style={styles.image} source={nft04} />
         </View>
       </Animated.View>
-      <Animated.View style={[styles.textConatiner,{
-        opacity:fadeTextAnimation,
-
-      }]}>
+      <Animated.View
+        style={[
+          styles.textConatiner,
+          {
+            opacity: fadeTextAnimation,
+          },
+        ]}
+      >
         <Text style={styles.mainText}>Find, Collect and sell Amazing NFTs</Text>
         <Text style={styles.subText}>
           Explore the top collection of NFTs and buy ans sells your NFTs aw well{" "}
         </Text>
       </Animated.View>
-      <Animated.View style={[styles.buttonContainer,{
-        transform:[{
-          translateY:moveButtonAnimation.interpolate({
-            inputRange:[0,1],
-            outputRange:[0,200]
-          })
-        }]
-      }]}>
+      <Animated.View
+        style={[
+          styles.buttonContainer,
+          {
+            transform: [
+              {
+                translateY: moveButtonAnimation.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 200],
+                }),
+              },
+            ],
+          },
+        ]}
+      >
         <Button
           title="Get Started"
           pressHandler={pressHandler}
