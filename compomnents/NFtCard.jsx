@@ -1,43 +1,51 @@
-import { View, Text, SafeAreaView, StyleSheet,TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
-
-const NFtCard = () => {
+import NftImage from "../compomnents/NftImage";
+const NFtCard = ({ nftsData }) => {
   return (
-    <SafeAreaView style={styles.container}>
-    <TouchableOpacity onPress={() => console.log("Touchable pressed")}>
-      <Text style={{ color: COLORS.white }}>image</Text>
-    </TouchableOpacity>
-
-    <View style={styles.cardTop}>
-      <Text style={{ color: COLORS.white }}>image</Text>
-    </View>
-    <View style={styles.cardBottom}>
-      <Text>title</Text>
-      <View>
-        <Text>info</Text>
-      </View>
-    </View>
-  </SafeAreaView>
+    <TouchableWithoutFeedback>
+      <SafeAreaView style={styles.container}>
+        <TouchableOpacity onPress={pressHandler}>
+          <NftImage image={nftsData.image} imageStyles={styles.imageStyles} />
+        </TouchableOpacity>
+        <View style={styles.cardTop}></View>
+        <View style={styles.cardBottom}>
+          <View style={{ marginTop: SIZES.small + 5 }}></View>
+        </View>
+      </SafeAreaView>
+    </TouchableWithoutFeedback>
   );
 };
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: "center",
-      justifyContent: "center",
-      backgroundColor: COLORS.bg,
-    },
-    cardTop: {
-      width: "100%",
-      paddingHorizontal: SIZES.medium,
-      marginTop: -30,
-      flexDirection: "row",
-      justifyContent: "space-between",
-    },
-    cardBottom: {
-      width: "100%",
-      padding: SIZES.medium,
-    },
-  });
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.cardBg,
+    borderRadius: SIZES.medium,
+    marginBottom: SIZES.xLarge,
+    marginVertical: SIZES.small - 5,
+    marginHorizontal: 14,
+    padding: 12,
+  },
+  cardTop: {
+    width: "100%",
+    paddingHorizontal: SIZES.medium,
+    marginTop: -30,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  cardBottom: { width: "100%", padding: SIZES.medium },
+  imageStyles: {
+    width: "100%",
+    height: 300,
+    borderRadius: 30,
+  },
+});
 export default NFtCard;
