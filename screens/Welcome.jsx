@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, Image, Animated } from "react-native";
+import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import nft08 from "../assets/images/nft08.jpg";
 import nft06 from "../assets/images/nft06.jpg";
@@ -7,13 +7,68 @@ import nft04 from "../assets/images/nft04.jpg";
 import Button from "../compomnents/Button";
 import { useNavigation } from "@react-navigation/native";
 const Welcome = () => {
+  // navigation
   const navigation = useNavigation();
   pressHandler = () => {
     navigation.navigate("Home");
   };
+  const duration = 1000;
+  const delay = duration + 300;
+  const fadeImagesAnimation = useRef(new Animated.Value(0)).current;
+  const moveImagesAnimation = useRef(
+    new Animated.ValueXY({ x: 100, y: 100 })
+  ).current;
+  const fadeTextAnimation = useRef(new Animated.Value(0)).current;
+  const moveButtonAnimation = useRef(new Animated.Value(1)).current;
+
+  /** Animations Handlers */
+  const imagesAnimationHandler = () => {
+    Animated.sequence([
+      Animated.timing(fadeImagesAnimation, {
+        toValue: 1,
+        duration,
+        useNativeDriver: true,
+      }),
+      Animated.spring(moveImagesAnimation, {
+        toValue: { x: 0, y: 0 },
+        duration,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+  const textAnimationHandler = () => {
+    Animated.timing(fadeTextAnimation, {
+      toValue: 1,
+      duration,
+      delay,
+      useNativeDriver: true,
+    }).start();
+  };
+  const buttonAnimationHandler = () => {
+    Animated.spring(moveButtonAnimation, {
+      toValue: 0,
+      friction: 4,
+      delay,
+      useNativeDriver: true,
+    }).start();
+  };
+  useEffect(() => {
+    imagesAnimationHandler();
+    textAnimationHandler();
+    buttonAnimationHandler();
+  }, [imagesAnimationHandler, textAnimationHandler, buttonAnimationHandler]);
+
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
+      <Animated.View
+        style={[
+          styles.imageContainer,
+          {
+            opacity: fadeImagesAnimation,
+            transform: moveImagesAnimation.getTranslateTransform(),
+          },
+        ]}
+      >
         <View style={styles.imagCard}>
           <Image style={styles.image} source={nft08} />
         </View>
@@ -23,21 +78,31 @@ const Welcome = () => {
         <View style={styles.imagCard}>
           <Image style={styles.image} source={nft04} />
         </View>
-      </View>
-      <View style={styles.textConatiner}>
+      </Animated.View>
+      <Animated.View style={[styles.textConatiner,{
+        opacity:fadeTextAnimation,
+
+      }]}>
         <Text style={styles.mainText}>Find, Collect and sell Amazing NFTs</Text>
         <Text style={styles.subText}>
           Explore the top collection of NFTs and buy ans sells your NFTs aw well{" "}
         </Text>
-      </View>
-      <View style={styles.buttonContainer}>
+      </Animated.View>
+      <Animated.View style={[styles.buttonContainer,{
+        transform:[{
+          translateY:moveButtonAnimation.interpolate({
+            inputRange:[0,1],
+            outputRange:[0,200]
+          })
+        }]
+      }]}>
         <Button
           title="Get Started"
           pressHandler={pressHandler}
           stylesButton={styles.button}
           styleText={styles.textButton}
         />
-      </View>
+      </Animated.View>
     </View>
   );
 };
@@ -72,12 +137,13 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: SIZES.xLarge + 6,
     textAlign: "center",
-    fontFamily:FONTS.bold
+    fontFamily: FONTS.bold,
   },
   subText: {
     marginTop: SIZES.large,
     color: COLORS.gray,
     textAlign: "center",
+    fontFamily: FONTS.light,
   },
   buttonContainer: {
     position: "absolute",
@@ -94,6 +160,7 @@ const styles = StyleSheet.create({
   textButton: {
     fontSize: SIZES.large,
     color: COLORS.white,
+    fontFamily: FONTS.bold,
   },
 });
 export default Welcome;

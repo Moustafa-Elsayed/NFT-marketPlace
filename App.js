@@ -18,6 +18,10 @@ const App = () => {
     async function loadFonts() {
       await Font.loadAsync({
         'Inter-Bold': require('./assets/fonts/Inter-Bold.ttf'),
+        InterLight: require("./assets/fonts/Inter-Light.ttf"),
+        InterMedium: require("./assets/fonts/Inter-Medium.ttf"),
+        InterRegular: require("./assets/fonts/Inter-Regular.ttf"),
+        InterSemiBold: require("./assets/fonts/Inter-SemiBold.ttf"),
       });
       setFontsLoaded(true);
     }
@@ -43,11 +47,7 @@ const App = () => {
           <Stack.Screen name="Welcome" component={Welcome} />
           <Stack.Screen name="NFT-details" component={NFTDetails} />
         </Stack.Navigator>
-      </NavigationContainer>
-      {/* Example usage of the loaded font in a Text component */}
-      <Text style={{ fontSize: 30, fontFamily: 'Inter-Bold' }}>
-        Inter Bold
-      </Text>
+      </NavigationContainer>      
     </>
   );
 };
