@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
 import React, { useState } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import { DATA } from "../constants";
-import NFtCard from "../compomnents/NFtCard";
+import NFtCard from "../components/NFtCard";
 const Home = () => {
   const [nftsData, setNftsData] = useState(DATA);
   return (

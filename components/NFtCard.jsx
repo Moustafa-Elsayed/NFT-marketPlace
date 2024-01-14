@@ -8,8 +8,9 @@ import {
 } from "react-native";
 import React from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
-import NftImage from "../compomnents/NftImage";
+import NftImage from "./NftImage";
 import NftAvatar from "./NftAvatar";
+import NftTitle from "./NftTitle";
 const NFtCard = ({ nftsData }) => {
   return (
     <TouchableWithoutFeedback>
@@ -22,7 +23,11 @@ const NFtCard = ({ nftsData }) => {
         </View>
         <View style={styles.cardBottom}>
           <View style={{ marginTop: SIZES.small + 5 }}>
-            <Text style={{color:COLORS.white}}>hdfjh</Text>
+          <NftTitle 
+            name={nftsData.name}
+            creator={nftsData.creator}
+            date={nftsData.date}
+          />
           </View>
         </View>
       </SafeAreaView>
