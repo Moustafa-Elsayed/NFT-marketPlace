@@ -1,10 +1,19 @@
-import { View, Text, StyleSheet, Image, Animated,BackHandler,Alert, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  Animated,
+  BackHandler,
+  Alert,
+  SafeAreaView,
+} from "react-native";
 import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import nft08 from "../assets/images/nft08.jpg";
 import nft06 from "../assets/images/nft06.jpg";
 import nft04 from "../assets/images/nft04.jpg";
-import Button from "../compomnents/Button";
+import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
 const Welcome = () => {
   // navigation
@@ -66,38 +75,37 @@ const Welcome = () => {
     imagesAnimationHandler();
     textAnimationHandler();
     buttonAnimationHandler();
-    
-  }, [btnAnimationHandler,imagesAnimationHandler, textAnimationHandler, buttonAnimationHandler]);
-// BackHandler 
-useEffect(() => {
-  const backAction = () => {
-    Alert.alert(
-      'Hold on!',
-      'Are you sure you want to go back?',
-      [
+  }, [
+    btnAnimationHandler,
+    imagesAnimationHandler,
+    textAnimationHandler,
+    buttonAnimationHandler,
+  ]);
+  // BackHandler
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert("Hold on!", "Are you sure you want to go back?", [
         {
-          text: 'Cancel',
+          text: "Cancel",
           onPress: () => null,
-          style: 'cancel',
+          style: "cancel",
         },
         {
-          text: 'YES',
+          text: "YES",
           onPress: () => BackHandler.exitApp(),
-          style: 'destructive', // You can customize this style
+          style: "destructive", // You can customize this style
         },
-      ],
+      ]);
+      return true;
+    };
 
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
     );
-    return true;
-  };
 
-  const backHandler = BackHandler.addEventListener(
-    'hardwareBackPress',
-    backAction,
-  );
-
-  return () => backHandler.remove();
-}, []);
+    return () => backHandler.remove();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <Animated.View

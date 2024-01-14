@@ -11,8 +11,8 @@ const NftDate = ({date}) => {
 };
 const styles = StyleSheet.create({
   dateText: {
-    fontFamily: FONTS.light,
-    color: COLORS.white,
+    fontFamily: FONTS.regular,
+    color: COLORS.gray,
     fontSize: SIZES.small + 5,
   },
 });
