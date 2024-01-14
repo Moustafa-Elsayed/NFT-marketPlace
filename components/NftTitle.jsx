@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { COLORS, FONTS, SIZES } from "../constants";
-
+import NftDate from "../components/NftDate"
 const NftTitle = ({ name, creator, date }) => {
   return (
     <View>
@@ -14,7 +14,7 @@ const NftTitle = ({ name, creator, date }) => {
           <Text>icon</Text>
         </View>
         <View>
-          <Text>{date}</Text>
+        <NftDate date={date}/>
         </View>
       </View>
     </View>
