@@ -3,11 +3,14 @@ import React, { useState } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import { DATA } from "../constants";
 import NFtCard from "../components/NFtCard";
+import HomeHeader from "../components/HomeHeader";
 const Home = () => {
   const [nftsData, setNftsData] = useState(DATA);
+  const searchHandler = () => {};
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View style={{ flex: 1 }}>
+        <HomeHeader searchHandler={searchHandler} />
         <FlatList
           data={nftsData}
           renderItem={({ item }) => <NFtCard nftsData={item} />}
@@ -23,7 +26,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: COLORS.bg,
-    paddingTop:50
+    paddingTop: 50,
   },
   text: {
     color: COLORS.white,
