@@ -11,6 +11,9 @@ import { COLORS, SIZES, FONTS } from "../constants";
 import NftImage from "./NftImage";
 import NftAvatar from "./NftAvatar";
 import NftTitle from "./NftTitle";
+import NftInfo from "./NftInfo";
+
+
 const NFtCard = ({ nftsData }) => {
   return (
     <TouchableWithoutFeedback>
@@ -27,6 +30,15 @@ const NFtCard = ({ nftsData }) => {
             name={nftsData.name}
             creator={nftsData.creator}
             date={nftsData.date}
+          />
+          </View>
+          <View style={{ marginTop: SIZES.small + 5 }}>
+          <NftInfo 
+
+            comments={nftsData.comments}
+            Views={nftsData.views}
+            price={nftsData.price}
+            love
           />
           </View>
         </View>
