@@ -16,16 +16,28 @@ const Home = () => {
       setNftsData(DATA);
     }
   };
+  const NotFoundNFT = () => {
+    return (
+      <View style={styles.NotFound}>
+        <Text style={styles.textNot}>Opps... ! </Text>
+        <Text style={styles.textNot}>Not found the NFT</Text>
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1 }}>
         <HomeHeader searchHandler={searchHandler} />
-        <FlatList
-          data={nftsData}
-          renderItem={({ item }) => <NFtCard nftsData={item} />}
-          keyExtractor={(item) => item.id}
-        />
+        {!nftsData.length ? (
+          <NotFoundNFT />
+        ) : (
+          <FlatList
+            data={nftsData}
+            renderItem={({ item }) => <NFtCard nftsData={item} />}
+            keyExtractor={(item) => item.id}
+          />
+        )}
       </View>
     </SafeAreaView>
   );
@@ -42,6 +54,17 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: SIZES.xLarge + 9,
     paddingTop: SIZES.xLarge + 100,
+  },
+  NotFound: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: SIZES.xLarge + 10,
+  },
+  textNot: {
+    fontSize: 40 ,
+    fontFamily: FONTS.bold,
+    color: COLORS.white,
   },
 });
 export default Home;
