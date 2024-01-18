@@ -6,7 +6,17 @@ import NFtCard from "../components/NFtCard";
 import HomeHeader from "../components/HomeHeader";
 const Home = () => {
   const [nftsData, setNftsData] = useState(DATA);
-  const searchHandler = () => {};
+  const searchHandler = (value) => {
+    if (value) {
+      const filterData = DATA.filter((nft) =>
+        nft.name.toLowerCase().includes(value.toLowerCase())
+      );
+      setNftsData(filterData);
+    } else {
+      setNftsData(DATA);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1 }}>
