@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   buttonHeart: {
     position: "absolute",
-    top: StatusBar.currentHeight + 10,
+    top: StatusBar.currentHeight + 20,
     right: 10,
     backgroundColor: COLORS.white,
     padding: 10,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   buttonArrow: {
     position: "absolute",
-    top: StatusBar.currentHeight + 10,
+    top: StatusBar.currentHeight + 20,
     left: 10,
     backgroundColor: COLORS.white,
     padding: 10,

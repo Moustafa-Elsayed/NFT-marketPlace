@@ -1,11 +1,12 @@
-import { View, StyleSheet, SafeAreaView, StatusBar } from "react-native";
+import { View, StyleSheet, SafeAreaView, Text } from "react-native";
 import React from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import NftImage from "../components/NftImage";
+import NftAvatar from "../components/NftAvatar";
+import NftTitle from "../components/NftTitle";
+import NftInfo from "../components/NftInfo";
+
 const NftDetails = ({ route, navigation }) => {
-  const pressHandler = () => {
-    navigation.goBack();
-  };
   const { nftsData } = route.params;
   return (
     <SafeAreaView style={styles.container}>
@@ -17,6 +18,28 @@ const NftDetails = ({ route, navigation }) => {
           arrow
           pressHandler={pressHandler}
         />
+        <View style={{ paddingHorizontal: 20 }}>
+          <View style={{ marginTop: -SIZES.small - 10 }}>
+            <NftAvatar avatars={nftsData.avatars} />
+          </View>
+          <View style={{ marginTop: SIZES.small }}>
+            <NftTitle
+              name={nftsData.name}
+              creator={nftsData.creator}
+              date={nftsData.date}
+            />
+          </View>
+          <View style={{ marginTop: SIZES.small }}>
+            <NftInfo
+              Views={nftsData.Views}
+              comments={nftsData.comments}
+              price={nftsData.price}
+            />
+          </View>
+        </View>
+        <View>
+          <Text style={{ color: "red" }}>dlkfl</Text>
+        </View>
       </View>
     </SafeAreaView>
   );
