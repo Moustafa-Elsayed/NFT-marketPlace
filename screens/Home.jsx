@@ -1,11 +1,29 @@
-import { View, Text, StyleSheet, SafeAreaView, FlatList } from "react-native";
-import React, { useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  FlatList,
+  Animated,
+} from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import { DATA } from "../constants";
 import NFtCard from "../components/NFtCard";
 import HomeHeader from "../components/HomeHeader";
 const Home = () => {
   const [nftsData, setNftsData] = useState(DATA);
+  const moveSearchAnimation = useRef(new Animated.Value(0)).current;
+  const searchAnimationHandler = () => {
+    Animated.spring(moveSearchAnimation, {
+      toValue: 1,
+      friction: 4,
+      useNativeDriver: true,
+    }).start();
+  };
+  useEffect(() => {
+    searchAnimationHandler();
+  }, [searchAnimationHandler]);
   const searchHandler = (value) => {
     if (value) {
       const filterData = DATA.filter((nft) =>
@@ -28,7 +46,21 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ flex: 1 }}>
-        <HomeHeader searchHandler={searchHandler} />
+        <Animated.View
+          style={{
+            top: -100,
+            transform: [
+              {
+                translateY: moveSearchAnimation.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 100],
+                }),
+              },
+            ],
+          }}
+        >
+          <HomeHeader searchHandler={searchHandler} />
+        </Animated.View>
         {!nftsData.length ? (
           <NotFoundNFT />
         ) : (
@@ -62,7 +94,7 @@ const styles = StyleSheet.create({
     paddingVertical: SIZES.xLarge + 10,
   },
   textNot: {
-    fontSize: 40 ,
+    fontSize: 40,
     fontFamily: FONTS.bold,
     color: COLORS.white,
   },
