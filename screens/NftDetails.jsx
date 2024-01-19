@@ -5,8 +5,11 @@ import NftImage from "../components/NftImage";
 import NftAvatar from "../components/NftAvatar";
 import NftTitle from "../components/NftTitle";
 import NftInfo from "../components/NftInfo";
-
+import MoreDetails from "../components/MoreDetails";
 const NftDetails = ({ route, navigation }) => {
+  constpressHandler = () => {
+    navigation.goBack();
+  };
   const { nftsData } = route.params;
   return (
     <SafeAreaView style={styles.container}>
@@ -38,7 +41,12 @@ const NftDetails = ({ route, navigation }) => {
           </View>
         </View>
         <View>
-          <Text style={{ color: "red" }}>dlkfl</Text>
+          <MoreDetails
+            address={nftsData.address}
+            tokenId={nftsData.tokenId}
+            tokenSt={nftsData.tokenSt}
+            blockchain={nftsData.blockchain}
+          />
         </View>
       </View>
     </SafeAreaView>

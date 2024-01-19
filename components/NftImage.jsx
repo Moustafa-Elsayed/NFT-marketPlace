@@ -4,7 +4,7 @@ import Button from "./Button";
 import { COLORS, SIZES, FONTS } from "../constants";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-const NftImage = ({ image, imageStyles, love, arrow,pressHandler }) => {
+const NftImage = ({ image, imageStyles, love, arrow, pressHandler }) => {
   return (
     <View style={styles.container}>
       <Image
@@ -26,7 +26,7 @@ const NftImage = ({ image, imageStyles, love, arrow,pressHandler }) => {
               name="arrow-left"
               size={20}
               color={COLORS.second}
-              pressHandler={pressHandler&&pressHandler}
+              pressHandler={pressHandler && pressHandler}
             />
           }
         />
