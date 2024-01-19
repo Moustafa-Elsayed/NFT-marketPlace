@@ -39,8 +39,7 @@ const NftDetails = ({ route, navigation }) => {
               price={nftsData.price}
             />
           </View>
-        </View>
-        <View>
+          <View style={{paddingTop:10}}>
           <MoreDetails
             address={nftsData.address}
             tokenId={nftsData.tokenId}
@@ -49,6 +48,8 @@ const NftDetails = ({ route, navigation }) => {
           />
         </View>
       </View>
+        </View>
+     
     </SafeAreaView>
   );
 };
