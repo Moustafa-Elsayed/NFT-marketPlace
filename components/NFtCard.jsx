@@ -12,9 +12,13 @@ import NftImage from "./NftImage";
 import NftAvatar from "./NftAvatar";
 import NftTitle from "./NftTitle";
 import NftInfo from "./NftInfo";
-
+import { useNavigation } from "@react-navigation/native";
 
 const NFtCard = ({ nftsData }) => {
+  const navigation = useNavigation();
+  const pressHandler = () => {
+    navigation.navigate("NFT-details", { nftsData });
+  };
   return (
     <TouchableWithoutFeedback>
       <SafeAreaView style={styles.container}>
@@ -22,24 +26,23 @@ const NFtCard = ({ nftsData }) => {
           <NftImage image={nftsData.image} imageStyles={styles.imageStyles} />
         </TouchableOpacity>
         <View style={styles.cardTop}>
-          <NftAvatar avatars={nftsData.avatars}  />
+          <NftAvatar avatars={nftsData.avatars} />
         </View>
         <View style={styles.cardBottom}>
           <View style={{ marginTop: SIZES.small + 5 }}>
-          <NftTitle 
-            name={nftsData.name}
-            creator={nftsData.creator}
-            date={nftsData.date}
-          />
+            <NftTitle
+              name={nftsData.name}
+              creator={nftsData.creator}
+              date={nftsData.date}
+            />
           </View>
           <View style={{ marginTop: SIZES.small + 5 }}>
-          <NftInfo 
-
-            comments={nftsData.comments}
-            Views={nftsData.views}
-            price={nftsData.price}
-            love
-          />
+            <NftInfo
+              comments={nftsData.comments}
+              Views={nftsData.views}
+              price={nftsData.price}
+              love
+            />
           </View>
         </View>
       </SafeAreaView>
