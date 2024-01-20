@@ -26,7 +26,7 @@ const NftImage = ({ image, imageStyles, love, arrow, pressHandler }) => {
               name="arrow-left"
               size={20}
               color={COLORS.second}
-              pressHandler={pressHandler && pressHandler}
+              onPress={pressHandler && pressHandler}
             />
           }
         />
