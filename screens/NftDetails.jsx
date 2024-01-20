@@ -1,5 +1,5 @@
 import { View, StyleSheet, SafeAreaView, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import NftImage from "../components/NftImage";
 import NftAvatar from "../components/NftAvatar";
@@ -7,6 +7,7 @@ import NftTitle from "../components/NftTitle";
 import NftInfo from "../components/NftInfo";
 import MoreDetails from "../components/MoreDetails";
 const NftDetails = ({ route ,navigation}) => {
+
   constpressHandler = () => {
     navigation.goBack();
   };
@@ -20,6 +21,7 @@ const NftDetails = ({ route ,navigation}) => {
           love
           arrow
           pressHandler={pressHandler}
+          linear
         />
         <View style={{ paddingHorizontal: 20 }}>
           <View style={{ marginTop: -SIZES.small - 10 }}>

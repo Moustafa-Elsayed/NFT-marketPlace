@@ -1,10 +1,21 @@
 import { View, Text, StyleSheet, Image, StatusBar } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 import { COLORS, SIZES, FONTS } from "../constants";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-const NftImage = ({ image, imageStyles, love, arrow, pressHandler }) => {
+import { LinearGradient } from "expo-linear-gradient";
+
+const NftImage = ({
+  image,
+  imageStyles,
+  love,
+  arrow,
+  pressHandler,
+  linear,
+  changeColor
+}) => {
+  
   return (
     <View style={styles.container}>
       <Image
@@ -15,7 +26,8 @@ const NftImage = ({ image, imageStyles, love, arrow, pressHandler }) => {
       {love && (
         <Button
           stylesButton={styles.buttonHeart}
-          icon={<AntDesign name="heart" size={20} color={COLORS.second} />}
+          icon={<AntDesign name="heart" size={20} color={COLORS.second}
+          onPress={changeColor&& changeColor} />}
         />
       )}
       {arrow && (
@@ -29,6 +41,19 @@ const NftImage = ({ image, imageStyles, love, arrow, pressHandler }) => {
               onPress={pressHandler && pressHandler}
             />
           }
+        />
+      )}
+      {linear && (
+        <LinearGradient
+          colors={["transparent", "rgba(23,23,23,0.8)", "rgba(23,23,23,1)"]}
+          start={{ x: 0.5, y: 0 }}
+          end={{ x: 0.5, y: 1 }}
+          style={{
+            position: "absolute",
+            bottom: 0,
+            width: "100%",
+            height: "50%",
+          }}
         />
       )}
     </View>
