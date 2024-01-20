@@ -1,9 +1,35 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, Animated } from "react-native";
+import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import Button from "./Button";
 import { FontAwesome } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 const MoreDetails = ({ address, tokenId, tokenSt, blockchain }) => {
+  const navigation = useNavigation();
+  pressHandler = () => {
+    navigation.navigate("Home");
+  };
+  const moveBtnAnimation = useRef(new Animated.Value(1)).current;
+  const fadeButtonAnimation = useRef(new Animated.Value(0)).current;
+
+  const buttonAnimationHandler = () => {
+  
+    Animated.spring(moveBtnAnimation, {
+      toValue: 0,
+      friction: 4,
+      useNativeDriver: true,
+    }).start();
+  };
+  const btnAnimationHandler = () => {
+    Animated.timing(fadeButtonAnimation, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+  useEffect(() => {
+    buttonAnimationHandler();
+    btnAnimationHandler();
+  }, [buttonAnimationHandler, btnAnimationHandler]);
   return (
     <View>
       <View style={styles.details}>
@@ -22,10 +48,26 @@ const MoreDetails = ({ address, tokenId, tokenSt, blockchain }) => {
         <Text style={styles.title}>blockchain</Text>
         <Text style={styles.value}>{blockchain}</Text>
       </View>
-      <View style={styles.btnContainer}>
-        <View style={{
-          gap:5
-        }}>
+      <Animated.View
+        style={[
+          styles.btnContainer,
+          {
+            transform: [
+              {
+                translateY: moveBtnAnimation.interpolate({
+                  inputRange: [0, 1],
+                  outputRange: [0, 200],
+                }),
+              },
+            ],
+          },
+        ]}
+      >
+        <View
+          style={{
+            gap: 5,
+          }}
+        >
           <View>
             <Text style={styles.text}>Top Bid</Text>
           </View>
@@ -41,10 +83,14 @@ const MoreDetails = ({ address, tokenId, tokenSt, blockchain }) => {
           </View>
         </View>
         <View>
-          <Button title={"Place a Bid"} stylesButton={styles.button}
-          styleText={styles.btnText} />
+          <Button
+            title={"Place a Bid"}
+            stylesButton={styles.button}
+            styleText={styles.btnText}
+            pressHandler={pressHandler}
+          />
         </View>
-      </View>
+      </Animated.View>
     </View>
   );
 };
@@ -73,26 +119,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     padding: 20,
-    marginTop:60
+    marginTop: 60,
   },
   text: {
     fontFamily: FONTS.semiBold,
     fontSize: SIZES.medium,
     color: COLORS.white,
   },
-  button:{
-    backgroundColor:COLORS.second,
-    width:100,
-    padding:10,
-    display:"flex",
-    justifyContent:"center",
-    alignItems:"center",
-    borderRadius:10,
+  button: {
+    backgroundColor: COLORS.second,
+    width: 100,
+    padding: 10,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
   },
-  btnText:{
-    fontFamily:FONTS.bold,
-    color:COLORS.white,
-fontSize:SIZES.medium
-  }
+  btnText: {
+    fontFamily: FONTS.bold,
+    color: COLORS.white,
+    fontSize: SIZES.medium,
+  },
 });
 export default MoreDetails;
