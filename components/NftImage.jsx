@@ -5,7 +5,8 @@ import { COLORS, SIZES, FONTS } from "../constants";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-
+import { Dimensions } from "react-native";
+const { width, height } = Dimensions.get("window");
 const NftImage = ({
   image,
   imageStyles,
@@ -13,9 +14,8 @@ const NftImage = ({
   arrow,
   pressHandler,
   linear,
-  changeColor
+  changeColor,
 }) => {
-  
   return (
     <View style={styles.container}>
       <Image
@@ -26,8 +26,14 @@ const NftImage = ({
       {love && (
         <Button
           stylesButton={styles.buttonHeart}
-          icon={<AntDesign name="heart" size={20} color={COLORS.second}
-          onPress={changeColor&& changeColor} />}
+          icon={
+            <AntDesign
+              name="heart"
+              size={20}
+              color={COLORS.second}
+              onPress={changeColor && changeColor}
+            />
+          }
         />
       )}
       {arrow && (
@@ -65,8 +71,8 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   image: {
-    width: "100%",
-    aspectRatio: 16 / 14,
+    width: width,
+    // aspectRatio: 16 / 14,
     borderRadius: 30,
   },
   buttonHeart: {

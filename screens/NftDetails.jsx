@@ -59,15 +59,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.bg,
     width: width,
-    height: height,
+    height:height
   },
   content: {
-    flex: 1,
   },
   imageStyles: {
     width: width,
-    aspectRatio: 16 / 14,
-    height: 400,
+    // aspectRatio: 18/ 14,
+    height:height*0.50,
     borderRadius: 20,
   },
 });

@@ -1,10 +1,12 @@
-import { View, Text, StyleSheet, Image, TextInput } from "react-native";
+import { View, Text, StyleSheet, Image, TextInput, Dimensions } from "react-native";
 import React from "react";
 import { COLORS, FONTS, SIZES } from "../constants";
 import avatar03 from "../assets/images/avatars/avatar03.jpg";
 import { Feather } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Colors } from "react-native/Libraries/NewAppScreen";
+const { width, height } = Dimensions.get("window");
+
 const HomeHeader = ({ searchHandler }) => {
   return (
     <View style={styles.container}>
@@ -39,6 +41,7 @@ const HomeHeader = ({ searchHandler }) => {
 const styles = StyleSheet.create({
   container: {
     padding: SIZES.small,
+    width:width
   },
   header: {
     display: "flex",

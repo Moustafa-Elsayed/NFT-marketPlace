@@ -112,18 +112,18 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     backgroundColor: COLORS.cardBg,
-    width: width < 800 ? width*.90 : width * 0.6,
+    width: width * 0.9,
     borderRadius: 20,
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
-    padding: 20,
+    padding: 10,
     marginTop: height > 400 ? 30 : 60,
   },
   text: {
     fontFamily: FONTS.semiBold,
-    fontSize: SIZES.medium,
+    fontSize:SIZES.medium,
     color: COLORS.white,
   },
   button: {
@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontFamily: FONTS.bold,
     color: COLORS.white,
-    fontSize: SIZES.medium,
+    fontSize:width> 400?SIZES.medium:SIZES.small,
   },
 });
 export default MoreDetails;
