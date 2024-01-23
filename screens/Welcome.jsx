@@ -7,6 +7,7 @@ import {
   BackHandler,
   Alert,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
@@ -15,6 +16,7 @@ import nft06 from "../assets/images/nft06.jpg";
 import nft04 from "../assets/images/nft04.jpg";
 import Button from "../components/Button";
 import { useNavigation } from "@react-navigation/native";
+const { width, height } = Dimensions.get("window");
 const Welcome = () => {
   // navigation
   const navigation = useNavigation();
@@ -171,6 +173,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: COLORS.bg,
+    width: width,
+    height: height,
   },
 
   imageContainer: {

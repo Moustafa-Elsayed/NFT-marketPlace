@@ -1,4 +1,4 @@
-import { View, StyleSheet, SafeAreaView, Text } from "react-native";
+import { View, StyleSheet, SafeAreaView, Text, Dimensions } from "react-native";
 import React, { useState } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import NftImage from "../components/NftImage";
@@ -6,8 +6,8 @@ import NftAvatar from "../components/NftAvatar";
 import NftTitle from "../components/NftTitle";
 import NftInfo from "../components/NftInfo";
 import MoreDetails from "../components/MoreDetails";
-const NftDetails = ({ route ,navigation}) => {
-
+const { width, height } = Dimensions.get("window");
+const NftDetails = ({ route, navigation }) => {
   constpressHandler = () => {
     navigation.goBack();
   };
@@ -41,7 +41,7 @@ const NftDetails = ({ route ,navigation}) => {
               price={nftsData.price}
             />
           </View>
-          <View style={{ paddingTop: 10 }}>
+          <View style={{ paddingTop: 20 }}>
             <MoreDetails
               address={nftsData.address}
               tokenId={nftsData.tokenId}
@@ -58,12 +58,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.bg,
+    width: width,
+    height: height,
   },
   content: {
     flex: 1,
   },
   imageStyles: {
-    width: "100%",
+    width: width,
     aspectRatio: 16 / 14,
     height: 400,
     borderRadius: 20,

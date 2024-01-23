@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, Animated } from "react-native";
+import { View, Text, StyleSheet, Animated, Dimensions } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { COLORS, SIZES, FONTS } from "../constants";
 import Button from "./Button";
 import { FontAwesome } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+const { width, height } = Dimensions.get("window");
 const MoreDetails = ({ address, tokenId, tokenSt, blockchain }) => {
   const navigation = useNavigation();
   pressHandler = () => {
@@ -13,7 +14,6 @@ const MoreDetails = ({ address, tokenId, tokenSt, blockchain }) => {
   const fadeButtonAnimation = useRef(new Animated.Value(0)).current;
 
   const buttonAnimationHandler = () => {
-  
     Animated.spring(moveBtnAnimation, {
       toValue: 0,
       friction: 4,
@@ -56,7 +56,7 @@ const MoreDetails = ({ address, tokenId, tokenSt, blockchain }) => {
               {
                 translateY: moveBtnAnimation.interpolate({
                   inputRange: [0, 1],
-                  outputRange: [0, 200],
+                  outputRange: [0, 100],
                 }),
               },
             ],
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    paddingVertical: 10,
+    paddingVertical: 5,
     borderBottomWidth: 1,
     borderBottomColor: COLORS.cardBg,
   },
@@ -112,14 +112,14 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     backgroundColor: COLORS.cardBg,
-    width: "100%",
+    width: width < 800 ? width*.90 : width * 0.6,
     borderRadius: 20,
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
     flexDirection: "row",
     padding: 20,
-    marginTop: 60,
+    marginTop: height > 400 ? 30 : 60,
   },
   text: {
     fontFamily: FONTS.semiBold,
