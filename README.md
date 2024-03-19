@@ -1,5 +1,5 @@
 <h1 align="center">Weather App</h1>
-<P>This is a NFT App  build with:React Native expo</P>
+<P>This is a NFT-marketPlace App  build with:React Native expo</P>
 <p align="center"><img src="" width="400" height="800&quot;/" alt="project"></p>
 
 
@@ -15,7 +15,7 @@
 <p>1. Clone the repository</p>
 
 ```
-git clone https://github.com/Moustafa-Elsayed/Weather.git
+git clone https://github.com/Moustafa-Elsayed/NFT-marketPlace.git
 ```
 
 <p>2. Install npm modules</p>
